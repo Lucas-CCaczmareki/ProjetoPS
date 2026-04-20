@@ -1,0 +1,52 @@
+; TESTE COMPLETO Z80 (todas instrucoes ai pra teste)
+
+; ===== Dados =====
+LD A, 10
+LD B, 5
+LD C, 2
+
+LD D, A        ; LD r, r'
+LD E, 20       ; LD r, n
+
+LD H, 00h
+LD L, 30h      ; HL = 0x0030
+
+LD (HL), B     ; LD (HL), r
+LD A, (HL)     ; LD r, (HL)
+
+; ===== Aritmética =====
+ADD A, C       ; A = A + C
+SUB B          ; A = A - B
+INC A          ; A++
+DEC C          ; C--
+
+; ===== Lógicas =====
+AND B          ; A = A & B
+OR C           ; A = A | C
+XOR B          ; A = A ^ B
+CP C           ; compara A com C
+
+; ===== Pilha =====
+PUSH BC
+PUSH DE
+POP DE
+POP BC
+
+; ===== Controle de fluxo =====
+CALL FUNC
+
+JP END
+
+LOOP:
+DEC A
+JR LOOP
+
+; ===== Função =====
+FUNC:
+INC B
+RET
+
+; ===== Final =====
+END:
+NOP
+HALT
