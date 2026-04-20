@@ -49,6 +49,7 @@
   - `INC A` -> `A = A + 1`
 
 ## Instruções a serem suportadas
+
 ; vai ser linha comentada
 
 | Categoria | Instrução    | Descrição curta                  |
@@ -82,12 +83,12 @@
 - Armazena endereços de retorno e valores temporários;
 - Precisa de tratamento para stack overflow e stack underflow.
 
-## Fluxo esperado:
+## Fluxo teoria:
 
 - 1. entrada: mnemonicos (ADD A, B) ...
 - 2. VM interpreta e executa isso (le a entrada, armazena de forma estruturada e começa a executar as operações com os registradores e mudar as flags a cada operação)
-  - **Montador**: quem faz o processo de ler mnemonico e transformar em algo estruturado que consigamos manipular no codigo.
-  - **VM executor**: while(true) até executar tudo que precisa (lembra que tem jumps e etc...)
+  - **Montador**: quem faz o processo de ler mnemonico e transformar em binario. (nesse trabalho é só VM)
+  - **VM executor**: while(true) até executar todas instruções (lembra que tem jumps e etc...)
   - **Estado da máquina**: registradores, program counter, SP stack, flags (zero, sign, overflow/paridade), memoria (codigo, dados e stack)
     - **memoria total: 2^16 (nao conta registradores)**
       -- stack comeca no topo, código fica no 0000, dados acima do codigo, stack comeca em tudo 1
@@ -100,3 +101,25 @@
   - mem[65536] -> tudo (código + dados + pilha)
   - registradores -> só controle/execução
   - stack -> parte da memória (controlada por SP)
+
+## Fluxo simplificado código:
+
+-- esse seria antes da vm mas ainda nao
+
+- **0 Assembler (ainda nao nessa etapa)**: le mnemonico e gera .bin arquivo com opcode seguindo
+  exemplo: [opcode][operand1][operand2]
+  ADD A, B -> (assembler) -> 00000001 00000000 00000001
+
+-- esses sim na VM:
+
+- **1o Loader** -> carrega .bin na memória
+- **2o VM loop**:
+
+- **Fetch** -> le instrução da memória (0s e 1s com opcode e etc) -> **while na VM mesmo**
+  - usa PC program counter pra isso
+- **Decoder** -> interpreta bytes (interpreta o que foi lido e transforma em algo estruturado)
+  - cria Instruction (em RAM temporária/registrador de instrução)
+  - algo tipo `struct Instruction { opcode, operand1, operand2 };` em c++ mesmo normal, nao na vm
+- **Executor** -> executa instrução (executa aquilo que ja ta estruturado pelo decoder)
+  - **chama CPU** para executar operações (ADD, SUB, MOV)
+  - CPU atualiza registradores e flags

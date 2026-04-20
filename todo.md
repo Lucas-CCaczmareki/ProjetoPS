@@ -4,8 +4,9 @@
 
 ### metade do grupo na funcionalidade da VM (joao g, pessoa a, pessoa b, pessoa c)
 
+- [X] estrutura do projeto e modulos necessarios + makefile pra rodar tudo linkado
 - [ ] base da VM com registradores, flags, pc e memoria (codigo, dados, stack)
-- [ ] ler entrada mnemonicos e transformar em estrutura no codigo (executa ADD A,B) etc
+- [ ] ler entrada binario e transformar em estrutura no codigo (executa ADD A,B) etc
 - [ ] interpretar instruções e executar operações alterando as flags a cada operação
 - [ ] tratar stack overflow (erro)
 - [ ] tratamento de loop infinito, erros e etc pra nao quebrar com qualquer coisa?

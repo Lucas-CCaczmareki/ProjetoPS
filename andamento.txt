@@ -2,4 +2,5 @@ Atualizar o que ta feito, quem fez, se precisar matar duvida de algo que não en
 
 joao g
 - resumir o que deve ser feito e separar as tarefas passo a passo
+- estrutura do projeto e modulos necessarios (boilerplate) + makefile pra rodar tudo linkado
 
