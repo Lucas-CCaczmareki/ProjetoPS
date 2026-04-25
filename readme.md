@@ -6,7 +6,7 @@
 
 
 ## Como rodar:
-- `Make && ./vm`
+- `Make run`
 
 ## Docs
 - [Documentação da VM - teoria](./vm.md)

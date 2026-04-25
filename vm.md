@@ -7,7 +7,7 @@
 
 ## Memoria
 
-- Barramento de endereços: 16 bits (2^16 endereços ~ 64 KB de memória)
+- Barramento de endereços: 16 bits (2^16 endereços, cada um com 8bits ~ 64 KB de memória)
 - Barramento de dados: 8 bits (cpu le e escreve 1byte por vez)
 - Endereçamento: por byte (cada endereço aponta pra 1 byte)
   - Exemplo de uma operação:
@@ -52,28 +52,31 @@
 
 ; vai ser linha comentada
 
-| Categoria | Instrução    | Descrição curta                  |
-| --------- | ------------ | -------------------------------- |
-| Dados     | `LD r, r'`   | copia registrador -> registrador |
-|           | `LD r, n`    | imediato -> registrador          |
-|           | `LD (HL), r` | registrador -> memória[HL]       |
-|           | `LD r, (HL)` | memória[HL] -> registrador       |
-| Aritm.    | `ADD A, r`   | A = A + r                        |
-|           | `SUB r`      | A = A - r                        |
-|           | `INC r`      | r = r + 1                        |
-|           | `DEC r`      | r = r - 1                        |
-|           | `CP r`       | compara A com r (flags)          |
-| Lógicas   | `AND r`      | A = A & r                        |
-|           | `OR r`       | A = A \| r                       |
-|           | `XOR r`      | A = A ^ r                        |
-| Fluxo     | `JP addr`    | PC = addr                        |
-|           | `JR offset`  | PC += deslocamento               |
-|           | `CALL addr`  | chama subrotina                  |
-|           | `RET`        | retorna da subrotina             |
-| Pilha     | `PUSH rp`    | empilha registrador par          |
-|           | `POP rp`     | desempilha registrador par       |
-| Exec      | `NOP`        | não faz nada                     |
-|           | `HALT`       | para execução                    |
+d -> destination
+d -> source
+
+| Categoria | Instrução    | Descrição curta                  | Opcode (binário)                   | Bytes |
+| --------- | ------------ | -------------------------------- | ---------------------------------- | ----- |
+| Dados     | `LD r, r'`   | copia registrador -> registrador | `01 ddd sss`                       | 1     |
+|           | `LD r, n`    | imediato -> registrador          | `00 ddd 110` + n                   | 2     |
+|           | `LD (HL), r` | registrador -> memória[HL]       | `01 110 sss`                       | 1     |
+|           | `LD r, (HL)` | memória[HL] -> registrador       | `01 ddd 110`                       | 1     |
+| Aritm.    | `ADD A, r`   | A = A + r                        | `10 000 sss`                       | 1     |
+|           | `SUB r`      | A = A - r                        | `10 010 sss`                       | 1     |
+|           | `INC r`      | r = r + 1                        | `00 ddd 100`                       | 1     |
+|           | `DEC r`      | r = r - 1                        | `00 ddd 101`                       | 1     |
+|           | `CP r`       | compara A com r (flags)          | `10 111 sss`                       | 1     |
+| Lógicas   | `AND r`      | A = A & r                        | `10 100 sss`                       | 1     |
+|           | `OR r`       | A = A \| r                       | `10 110 sss`                       | 1     |
+|           | `XOR r`      | A = A ^ r                        | `10 101 sss`                       | 1     |
+| Fluxo     | `JP addr`    | PC = addr                        | `11 000 011` lo hi                 | 3     |
+|           | `JR offset`  | PC += deslocamento               | `00 011 000` dd (signed ±127)      | 2     |
+|           | `CALL addr`  | chama subrotina                  | `11 001 101` lo hi                 | 3     |
+|           | `RET`        | retorna da subrotina             | `11 001 001`                       | 1     |
+| Pilha     | `PUSH rp`    | empilha registrador par          | `11 rp 0101` (BC/DE/HL/AF)        | 1     |
+|           | `POP rp`     | desempilha registrador par       | `11 rp 0001` (BC/DE/HL/AF)        | 1     |
+| Exec      | `NOP`        | não faz nada                     | `00 000 000`                       | 1     |
+|           | `HALT`       | para execução                    | `01 110 110`                       | 1     |
 
 ## Pilha da VM
 

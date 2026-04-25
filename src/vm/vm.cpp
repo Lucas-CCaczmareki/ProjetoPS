@@ -1,11 +1,8 @@
-
 /*
 VM:
 controla tudo (ciclo fetch-decode-execute)
 coordena CPU, memória, decoder e executor
 é o orquestrador da execução do programa
-
-vm vai ter memoria dentro (se ficar complicado separamos, mas nao vai precisar provavelmente) -> usar OOP
 
 CodeSegment = struct (array de bytes)
 DataSegment = struct (dados)
@@ -30,4 +27,8 @@ while(true) {
 void VM::run()
 {
   std::cout << "VM running\n";
+
+  mem.write(0x0000, 0x42);
+  uint8_t val = mem.read(0x0000);
+  std::cout << "mem[0x0000] = " << (int)val << "\n";
 }
