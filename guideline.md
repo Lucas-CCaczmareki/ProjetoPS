@@ -15,16 +15,19 @@
 ## INDENTAÇÃO / ESPAÇAMENTOS 
 - Identação de 4 espaços. (Mudar na IDE pra usar 4 espaços em vez de tab (Vscode é no canto inferior direito))
 
-- Chaves vão em linhas próprias (K&R). Exemplo:
+- Chaves vão em linhas próprias (K&R). 
+Exemplo:
 void exemplo() {
 ...
 }
 
-- Espaço ao redor de operadores. Exemplo: 
+- Espaço ao redor de operadores. 
+Exemplo: 
 int total = a + b;
 
 
-- Use uma linha em branco pra separar blocos dentro de uma função e funções. Exemplo:
+- Use uma linha em branco pra separar blocos dentro de uma função e funções. 
+Exemplo:
 void Exemplo() {
   int a = 0;
   int b = 2;
@@ -43,6 +46,7 @@ uint8_t, int8_t, uint16_t, int16_t, uint32_t, bool.
 - Procure sempre comentar. Comente o porquê e dê uma breve explicação se necessário.
 
 - As funções públicas nos arquivos .h devem ter documentação da seguinte forma:
+
 /**
  * @brief  Faz xyz
  *
@@ -53,11 +57,13 @@ uint8_t read(uint16_t address);
 
 ## COMMITS
 - Commitar da forma: **{tipo}({escopo}): {descrição}**
-Exemplo: feat(cpu): implementa função x 
-Procure fazer commits menores e constantes.
-Não façam commits grandes com mais de uma função. 
-Cuide o que for commitar, não adicione arquivos desnecessários. 
-Antes de commitar, dê pull e se puder afetar outro módulo do trabalho, verifique antes com atenção. 
+
+Exemplo: feat(cpu): implementa função x
+
+- Procure fazer commits menores e constantes.
+- Não façam commits grandes com mais de uma função. 
+- Cuide o que for commitar, não adicione arquivos desnecessários. 
+- Antes de commitar, dê pull e se puder afetar outro módulo do trabalho, verifique antes com atenção. 
 ---
 **Tipos:**
 - *feat*        Funcionalidade
