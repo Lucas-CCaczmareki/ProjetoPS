@@ -47,12 +47,12 @@ uint8_t, int8_t, uint16_t, int16_t, uint32_t, bool.
 
 - As funções públicas nos arquivos .h devem ter documentação da seguinte forma:
 
-\ /**
-\ * @brief  Faz xyz
-\ *
-\ * @param  address  Endereço de 16 bits.
-\ * @return          Byte armazenado naquele endereço.
-\ */
+/**
+ * @brief  Faz xyz
+ *
+ * @param  address  Endereço de 16 bits.
+ * @return          Byte armazenado naquele endereço.
+ */
 uint8_t read(uint16_t address);
 
 ## COMMITS
